@@ -1,4 +1,4 @@
-const crypto = require("crypto");
+const generateUniqueId = require("../utils/generateUniqueId");
 const connection = require("../database/connection");
 
 module.exports = {
@@ -17,7 +17,7 @@ module.exports = {
 
     const { name, email, whatsapp, city, uf } = request.body; // Desestruturar
 
-    const id = crypto.randomBytes(4).toString("HEX"); // Id Gerada
+    const id = generateUniqueId();
 
     //Conectar e Inserir dados na tabela criada -> await é utilizado, pois pode demorar para inserir os dados
     await connection("ongs").insert({
